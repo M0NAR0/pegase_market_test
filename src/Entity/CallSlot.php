@@ -102,4 +102,9 @@ class CallSlot
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->label . " (" . $this->startTime->format('G') . "h-" . $this->endTime->format('G') . "h)";
+    }
 }

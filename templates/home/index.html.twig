@@ -4,14 +4,28 @@
 
 {% block body %}
 <header>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
-          Pegase Market
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url('app_home') }}">
+            <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
+            Pegase Market
         </a>
-      </nav>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('app_form') }}">Demande de rappel</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Admin</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </header>
 <div class="container home-wrapper">
-    <h1>Welcome<h1>
+    {% block content %}{% endblock %}
 </div>
 {% endblock %}
