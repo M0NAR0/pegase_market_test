@@ -45,6 +45,27 @@ class CallbackRequestRepository extends ServiceEntityRepository
         }
     }
 
+    public function findTheLastFive()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findTheOnesToTreatToday()
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.callbackDate = :val')
+            ->setParameter('val', date("Y-m-d"))
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return CallbackRequest[] Returns an array of CallbackRequest objects
     //  */

@@ -1,0 +1,59 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block content %}
+
+    <div class="row">
+        <h1>Tableau de bord</h1>
+    </div>
+    <div class="row">
+        <h2>5 dernières demandes de rappels</h2>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NOM</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Créneau</th>
+                    <th scope="col">Date de rappel</th>
+                    <th scope="col">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lastCR in lastFiveCR %}
+                <tr>
+                    <th scope="row">{{ lastCR.id }}</th>
+                    <td>{{ lastCR.lastname }}</td>
+                    <td>{{ lastCR.firstname }}</td>
+                    <td>{{ lastCR.email }}</td>
+                    <td>{{ lastCR.phone }}</td>
+                    <td>{{ lastCR.callSlot }}</td>
+                    <td>{{ lastCR.callbackDate|date("m/d/Y") }}</td>
+                    <td>{{ lastCR.message }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h2>Demandes de rappels à rappeler aujourd'hui</h2>
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NOM</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Créneau</th>
+                    <th scope="col">Date de rappel</th>
+                    <th scope="col">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

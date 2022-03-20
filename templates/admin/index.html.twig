@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pegase Market{% endblock %}
+{% block title %}Pegase Market - Admin{% endblock %}
 
-{% block bodyClasses %}home{% endblock %}
+{% block bodyClasses %}admin{% endblock %}
 
 {% block body %}
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url('app_home') }}">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url('app_admin') }}">
             Pegase Market
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,17 +17,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('app_home') }}">Accueil</a>
+                    <a class="nav-link" href="{{ url('admin_dashboard') }}">Tableau de bord</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('app_form') }}">Demande de rappel</a>
+                    <a class="nav-link" href="{{ url('admin_callback_requests_list') }}">Liste des demandes de rappel</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('admin_call_slots_list') }}">Liste des créneaux</a>
                 </li>
             </ul>
-            <a class="btn btn-primary" href="{{ url('app_admin') }}">Admin</a>
+            <a class="btn btn-primary" href="{{ url('app_home') }}">Accueil</a>
         </div>
     </nav>
 </header>
-<div class="container home-wrapper">
+<div class="container admin-wrapper">
     {% block content %}{% endblock %}
 </div>
 {% endblock %}

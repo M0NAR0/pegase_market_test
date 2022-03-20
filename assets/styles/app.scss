@@ -1,9 +1,28 @@
 @import "~bootstrap/scss/bootstrap";
 
 body {
-    background-color: lightgray;
-
     .navbar {
         padding: 0.5rem 1rem;
+
+        .mr-auto {
+            margin-right: auto;
+        }
+    }
+    .table {
+        .thead-dark {
+            th {
+                color: #ffffff;
+                background-color: #212529;
+                border-color: #32383e;
+            }
+        }
+    }
+
+    &.home {
+        background-color: lightgrey;
+    }
+
+    .admin-wrapper {
+        background-color: #ffffff;
     }
 }

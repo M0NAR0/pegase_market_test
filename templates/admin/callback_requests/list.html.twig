@@ -1,0 +1,39 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block content %}
+
+    <div class="row">
+        <h1>Demandes de rappel</h1>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NOM</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Créneau</th>
+                    <th scope="col">Date de rappel</th>
+                    <th scope="col">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for callbackRequest in callbackRequests %}
+                <tr>
+                    <th scope="row">{{ callbackRequest.id }}</th>
+                    <td>{{ callbackRequest.lastname }}</td>
+                    <td>{{ callbackRequest.firstname }}</td>
+                    <td>{{ callbackRequest.email }}</td>
+                    <td>{{ callbackRequest.phone }}</td>
+                    <td>{{ callbackRequest.callSlot }}</td>
+                    <td>{{ callbackRequest.callbackDate|date("m/d/Y") }}</td>
+                    <td>{{ callbackRequest.message }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

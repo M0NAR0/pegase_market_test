@@ -1,0 +1,39 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block content %}
+
+    <div class="row">
+        <h1 class="col">Créneaux</h1>
+        <div class="col-1">
+            <a class="btn btn-success" href="{{ url('admin_create_callslot') }}">Ajouter</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Libellé</th>
+                    <th scope="col">Heure début</th>
+                    <th scope="col">Heure fin</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for callSlot in callSlots %}
+                <tr>
+                    <th scope="row">{{ callSlot.id }}</th>
+                    <td>{{ callSlot.label }}</td>
+                    <td>{{ callSlot.startTime|date('H:i:s') }}</td>
+                    <td>{{ callSlot.endTime|date('H:i:s') }}</td>
+                    <td>
+                        <a class="btn btn-warning" href="#">Modifier</a>
+                        <a class="btn btn-danger" href="#">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
