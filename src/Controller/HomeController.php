@@ -37,7 +37,7 @@ class HomeController extends AbstractController
             ->add('email', TextType::class, ['label' => 'Email'])
             ->add('phone', TextType::class, ['label' => 'Téléphone'])
             ->add('callSlot', EntityType::class, ['label' => 'Créneau', 'class' => CallSlot::class])
-            ->add('callbackDate', DateType::class, ['label' => 'Date de rappel'])
+            ->add('callbackDate', DateType::class, ['label' => 'Date de rappel', 'widget' => 'single_text'])
             ->add('message', TextareaType::class, ['label' => 'Message'])
             ->add('send', SubmitType::class, ['label' => 'Envoyer'])
             ->getForm();
