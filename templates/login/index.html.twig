@@ -6,17 +6,29 @@
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-
-    <form action="{{ path('app_login') }}" method="post">
-        <label for="username">Email:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}"/>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password"/>
-
-        {# If you want to control the URL the user is redirected to on success
-        <input type="hidden" name="_target_path" value="/account"/> #}
-
-        <button class="btn btn-success" type="submit">Connexion</button>
-    </form>
+    
+    <section id="login-cover" class="min-vh-100">
+        <div id="login-cover-caption">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+                        <h1 class="display-4 py-2 text-truncate">Connexion</h1>
+                        <div class="px-2">
+                            <form action="{{ path('app_login') }}" method="post" class="justify-content-center">
+                                <div class="form-group">
+                                    <label for="username" class="sr-only">Email :</label>
+                                    <input type="text" class="form-control" id="username" name="_username" placeholder="john.doe@gmail.com" value="{{ last_username }}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="sr-only">Mot de passe :</label>
+                                    <input type="password" class="form-control" id="password" name="_password" placeholder="**********"/>
+                                </div>
+                                <button type="submit" class="btn btn-success btn-lg">Connexion</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
