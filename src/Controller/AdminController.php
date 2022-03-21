@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\CallSlot;
 use App\Repository\CallbackRequestRepository;
 use App\Repository\CallSlotRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -66,9 +67,9 @@ class AdminController extends AbstractController
      */
     public function createCallSlotAction(Request $request): Response
     {
-        $callSolt = new CallSlot();
+        $callSlot = new CallSlot();
         // Create form
-        $form = $this->createFormBuilder($callSolt)
+        $form = $this->createFormBuilder($callSlot)
             ->add('label', TextType::class, ['label' => 'Libellé'])
             ->add('startTime', TimeType::class, ['label' => 'Heure de début'])
             ->add('endTime', TimeType::class, ['label' => 'Heure de fin'])
@@ -77,10 +78,10 @@ class AdminController extends AbstractController
         // Process form
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $callSolt = $form->getData();
+            $callSlot = $form->getData();
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($callSolt);
+            $em->persist($callSlot);
             $em->flush();
 
             return $this->redirectToRoute('admin_call_slots_list');
@@ -92,5 +93,66 @@ class AdminController extends AbstractController
         return $this->render('admin/call_slots/create.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/admin/callSlots/update/{id}", name="admin_update_callslot")
+     */
+    public function updateCallSlotAction(int $id, ManagerRegistry $doctrine, Request $request): Response
+    {
+        $em = $doctrine->getManager();
+        $callSlot = $em->getRepository(CallSlot::class)->find($id);
+
+        if (!$callSlot) {
+            throw $this->createNotFoundException(
+                'No callSlot found for id '.$id
+            );
+        }
+
+        // Create form
+        $form = $this->createFormBuilder($callSlot)
+            ->add('label', TextType::class, ['label' => 'Libellé'])
+            ->add('startTime', TimeType::class, ['label' => 'Heure de début'])
+            ->add('endTime', TimeType::class, ['label' => 'Heure de fin'])
+            ->add('send', SubmitType::class, ['label' => 'Envoyer'])
+            ->getForm();
+        // Process form
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $callSlot = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($callSlot);
+            $em->flush();
+
+            return $this->redirectToRoute('admin_call_slots_list');
+        }
+        else {
+            //error
+        }
+
+        return $this->render('admin/call_slots/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/callSlots/delete/{id}", name="admin_delete_callslot")
+     */
+    public function deleteCallSlotAction(ManagerRegistry $doctrine, int $id): Response
+    {
+        $em = $doctrine->getManager();
+        $callSlot = $em->getRepository(CallSlot::class)->find($id);
+
+        if (!$callSlot) {
+            throw $this->createNotFoundException(
+                'No callSlot found for id '.$id
+            );
+        }
+
+        $em->remove($callSlot);
+        $em->flush();
+
+        return $this->redirectToRoute('admin_call_slots_list');
     }
 }

@@ -27,8 +27,8 @@
                     <td>{{ callSlot.startTime|date('H:i:s') }}</td>
                     <td>{{ callSlot.endTime|date('H:i:s') }}</td>
                     <td>
-                        <a class="btn btn-warning" href="#">Modifier</a>
-                        <a class="btn btn-danger" href="#">Supprimer</a>
+                        <a class="btn btn-warning" href="{{ path('admin_update_callslot', {'id':callSlot.id}) }}">Modifier</a>
+                        <a class="btn btn-danger" href="{{ path('admin_delete_callslot', {'id':callSlot.id}) }}">Supprimer</a>
                     </td>
                 </tr>
                 {% endfor %}
