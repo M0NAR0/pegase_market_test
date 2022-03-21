@@ -52,6 +52,18 @@
                 </tr>
             </thead>
             <tbody>
+                {% for todaysCR in todaysCRToTreat %}
+                <tr>
+                    <th scope="row">{{ todaysCR.id }}</th>
+                    <td>{{ todaysCR.lastname }}</td>
+                    <td>{{ todaysCR.firstname }}</td>
+                    <td>{{ todaysCR.email }}</td>
+                    <td>{{ todaysCR.phone }}</td>
+                    <td>{{ todaysCR.callSlot }}</td>
+                    <td>{{ todaysCR.callbackDate|date("m/d/Y") }}</td>
+                    <td>{{ todaysCR.message }}</td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

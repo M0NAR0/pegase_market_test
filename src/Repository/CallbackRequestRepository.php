@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\CallbackRequest;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -45,6 +46,11 @@ class CallbackRequestRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Lists the last five callback requests.
+     *
+     * @return CallbackRequest[] Returns an array of CallbackRequest objects
+     */
     public function findTheLastFive()
     {
         return $this->createQueryBuilder('c')
@@ -55,11 +61,16 @@ class CallbackRequestRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+     * Lists the callback requests to treat today.
+     *
+     * @return CallbackRequest[] Returns an array of CallbackRequest objects
+     */
     public function findTheOnesToTreatToday()
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.callbackDate = :val')
-            ->setParameter('val', date("Y-m-d"))
+            ->where('c.callbackDate = :val')
+            ->setParameter('val', ''.date("Y-m-d").'')
             ->orderBy('c.id', 'ASC')
             ->getQuery()
             ->getResult()
