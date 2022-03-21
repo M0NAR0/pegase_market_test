@@ -31,7 +31,7 @@ class CallbackRequest
     #[ORM\Column(type: 'date')]
     private $callbackDate;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'text', nullable: true)]
     private $message;
 
     public function getId(): ?int
