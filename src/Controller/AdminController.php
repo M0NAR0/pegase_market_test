@@ -90,7 +90,7 @@ class AdminController extends AbstractController
             //error
         }
 
-        return $this->render('admin/call_slots/create.html.twig', [
+        return $this->render('admin/call_slots/form.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -131,7 +131,7 @@ class AdminController extends AbstractController
             //error
         }
 
-        return $this->render('admin/call_slots/create.html.twig', [
+        return $this->render('admin/call_slots/form.html.twig', [
             'form' => $form->createView(),
         ]);
     }

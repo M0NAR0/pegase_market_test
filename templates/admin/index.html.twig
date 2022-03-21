@@ -7,7 +7,7 @@
 {% block body %}
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{{ url('app_admin') }}">
+        <a class="navbar-brand" href="{{ path('app_admin') }}">
             Pegase Market
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,16 +17,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('admin_dashboard') }}">Tableau de bord</a>
+                    <a class="nav-link" href="{{ path('admin_dashboard') }}">Tableau de bord</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('admin_callback_requests_list') }}">Liste des demandes de rappel</a>
+                    <a class="nav-link" href="{{ path('admin_callback_requests_list') }}">Liste des demandes de rappel</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('admin_call_slots_list') }}">Liste des créneaux</a>
+                    <a class="nav-link" href="{{ path('admin_call_slots_list') }}">Liste des créneaux</a>
                 </li>
             </ul>
-            <a class="btn btn-primary" href="{{ url('app_home') }}">Accueil</a>
+            <a class="btn btn-primary" href="{{ path('app_home') }}">Accueil</a>
         </div>
     </nav>
 </header>
